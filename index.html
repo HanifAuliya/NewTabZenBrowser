@@ -1,86 +1,549 @@
 <!doctype html>
-<html>
+<html lang="id">
   <head>
-    <title>New tab</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HOME</title>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%237cb894' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 9.5L12 3l9 6.5'/%3E%3Cpath d='M5 10.5V20a1 1 0 0 0 1 1h3v-7h6v7h3a1 1 0 0 0 1-1v-9.5'/%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@400&display=swap"
+      rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
     <style>
-      html {
-        align-items: center;
-        color: #313131;
-        display: flex;
-        font:
-          22px "Courier New",
-          Courier,
-          monospace;
-        height: 100%;
-        justify-content: center;
+      * {
         margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Inter", sans-serif;
+      }
+
+      html,
+      body {
+        background: transparent;
       }
 
       body {
+        color: #ffffff;
+        min-height: 100vh;
         display: flex;
-        margin: 1em;
-        padding: 1em;
+        justify-content: center;
+        align-items: center;
+        overflow-y: auto;
+        padding: 40px 20px;
       }
 
-      h1 {
-        font-size: 2em;
-        grid-column: 1 / -1;
-        margin: 0;
+      /* Logo HOME - simple & minimalis, pojok kiri atas */
+      .brand {
+        position: fixed;
+        top: 24px;
+        left: 30px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: #ffffff;
+        letter-spacing: 3px;
+        font-size: 13px;
+        font-weight: 600;
+        opacity: 0.85;
+      }
+
+      .brand .dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #ffffff;
+        display: inline-block;
+      }
+
+      .container {
         text-align: center;
+        max-width: 620px;
+        width: 100%;
+        padding: 20px;
       }
 
-      a {
-        color: inherit;
-        text-decoration: none;
+      .greeting {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 4px;
+        color: rgba(255, 255, 255, 0.55);
+        margin-bottom: 6px;
+        font-weight: 500;
       }
 
-      a:focus,
-      a:hover {
-        color: #1d81b2;
+      .clock-container {
+        display: flex;
+        align-items: baseline;
+        justify-content: center;
+        margin-bottom: 14px;
       }
 
-      nav {
+      .time {
+        font-family: "Playfair Display", serif;
+        font-size: 76px;
+        font-weight: 400;
+        line-height: 1;
+        letter-spacing: -2px;
+        color: #ffffff;
+        text-shadow: 0 2px 20px rgba(0, 0, 0, 0.35);
+      }
+
+      .ampm {
+        font-size: 18px;
+        margin-left: 10px;
+        color: rgba(255, 255, 255, 0.55);
+        font-weight: 400;
+      }
+
+      .date {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.6);
+        margin-bottom: 16px;
+        letter-spacing: 0.5px;
+      }
+
+      /* Kutipan kecil di bawah tanggal */
+      .quote {
+        font-size: 12px;
+        font-style: italic;
+        color: rgba(255, 255, 255, 0.55);
+        max-width: 400px;
+        margin: 0 auto 28px auto;
+        line-height: 1.5;
+      }
+
+      .quote .quote-author {
+        display: block;
+        margin-top: 6px;
+        font-style: normal;
+        font-size: 10px;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.4);
+      }
+
+      .search-form {
+        width: 100%;
+        margin-bottom: 12px;
+      }
+
+      .search-box {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.06);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 14px 20px;
+        border-radius: 30px;
+        color: #fff;
+        font-size: 14px;
+        outline: none;
+        transition: all 0.3s ease;
+        text-align: left;
+        display: flex;
+        align-items: center;
+        cursor: text;
+      }
+
+      .search-box:hover {
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(255, 255, 255, 0.16);
+      }
+
+      .search-box.focused {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.24);
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+      }
+
+      .search-box i {
+        color: rgba(255, 255, 255, 0.45);
+        margin-right: 12px;
+        transition: color 0.2s ease;
+        cursor: pointer;
+      }
+
+      .search-box.focused i {
+        color: #ffffff;
+      }
+
+      .search-box input {
+        background: transparent;
+        border: none;
+        outline: none;
+        color: #fff;
+        width: 100%;
+        font-size: 14px;
+      }
+
+      .search-box input::placeholder {
+        color: rgba(255, 255, 255, 0.35);
+      }
+
+      .search-engines {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-bottom: 32px;
+      }
+
+      .engine-tag {
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.45);
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-family: "Inter", sans-serif;
+        padding: 4px 2px;
+        transition:
+          color 0.2s ease,
+          transform 0.15s ease;
+      }
+
+      .engine-tag.active {
+        color: #ffffff;
+        font-weight: 600;
+      }
+
+      .engine-tag:hover {
+        color: rgba(255, 255, 255, 0.8);
+        transform: translateY(-1px);
+      }
+
+      /* Kalender mini */
+      .calendar {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        border-radius: 18px;
+        padding: 18px 20px 20px;
+        max-width: 300px;
+        margin: 0 auto;
+      }
+
+      .calendar-header {
+        font-size: 12px;
+        letter-spacing: 1px;
+        color: #ffffff;
+        opacity: 0.85;
+        margin-bottom: 12px;
+        font-weight: 500;
+        text-transform: uppercase;
+      }
+
+      .cal-grid {
         display: grid;
-        grid-row-gap: 1em;
-        grid-template-columns: 1fr 1fr;
-        margin: 0 1em;
-        min-width: 24em;
-        padding: 1em 0;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 4px;
       }
 
-      ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        white-space: nowrap;
+      .cal-day-label {
+        font-size: 10px;
+        color: rgba(255, 255, 255, 0.35);
+        padding: 4px 0;
       }
 
-      li:first-child {
-        font-weight: bold;
-        line-height: 2em;
+      .cal-cell {
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.7);
+        padding: 6px 0;
+        border-radius: 8px;
       }
 
-      img {
-        border: 2px solid #313131;
-        height: auto;
-        object-fit: cover;
-        object-position: 50% 100%;
-        width: 8em;
+      .cal-cell.today {
+        background: #ffffff;
+        color: #0d0d0d;
+        font-weight: 600;
+      }
+
+      .cal-cell.empty {
+        visibility: hidden;
+      }
+
+      /* Dock shortcut - dipindah ke bawah layar */
+      .shortcuts {
+        position: fixed;
+        bottom: 26px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        padding: 10px;
+        border-radius: 20px;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+      }
+
+      .shortcut-card {
+        background: rgba(255, 255, 255, 0.03);
+        width: 56px;
+        height: 56px;
+        border-radius: 12px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        color: #fff;
+        transition: all 0.2s ease;
+      }
+
+      .shortcut-card:hover {
+        background: rgba(255, 255, 255, 0.09);
+        transform: translateY(-3px);
+      }
+
+      .shortcut-card i {
+        font-size: 18px;
+        margin-bottom: 5px;
+      }
+
+      .shortcut-card.github i {
+        color: #ffffff;
+      }
+      .shortcut-card.youtube i {
+        color: #ff0000;
+      }
+      .shortcut-card.gmail i {
+        color: #ea4335;
+      }
+      .shortcut-card.reddit i {
+        color: #ff4500;
+      }
+      .shortcut-card.gemini i {
+        color: #4285f4;
+      }
+      .shortcut-card.claude i {
+        color: #d97706;
+      }
+
+      .shortcut-card span {
+        font-size: 8px;
+        color: rgba(255, 255, 255, 0.55);
+        font-weight: 400;
       }
     </style>
   </head>
   <body>
-    <nav>
-      <h1>Cool, eh?</h1>
-      <ul>
-        <li>General</li>
-        <li><a href="https://stpg.tk/">/wg/-/stpg/</a></li>
-        <li><a href="https://www.theonion.com/">News</a></li>
-        <li><a href="https://send.firefox.com/">FF Send</a></li>
-      </ul>
-    </nav>
+    <div class="brand">
+      <span class="dot"></span>
+      HOME
+    </div>
 
-    <img src="https://i.ibb.co/3TP4CJt/cosy.png" />
+    <div class="container">
+      <div class="greeting" id="greeting">GOOD AFTERNOON</div>
+
+      <div class="clock-container">
+        <div class="time" id="time">00:00</div>
+        <div class="ampm" id="ampm">PM</div>
+      </div>
+
+      <div class="date" id="date">Monday, July 27</div>
+
+      <div class="quote">
+        "Every action you take is a vote for the type of person you wish to
+        become"
+        <span class="quote-author">Hanif Auliya</span>
+      </div>
+
+      <form class="search-form" id="searchForm">
+        <div class="search-box" id="searchBox">
+          <i class="fa-solid fa-magnifying-glass" id="searchIcon"></i>
+          <input
+            type="text"
+            name="q"
+            id="searchInput"
+            placeholder="Search the web, or jump to a site"
+            autocomplete="off"
+            autofocus />
+        </div>
+      </form>
+
+      <div class="search-engines" id="searchEngines">
+        <button type="button" class="engine-tag" data-engine="brave">
+          Brave
+        </button>
+        <button type="button" class="engine-tag active" data-engine="google">
+          Google
+        </button>
+        <button type="button" class="engine-tag" data-engine="duckduckgo">
+          DuckDuckGo
+        </button>
+      </div>
+
+      <div class="calendar">
+        <div class="calendar-header" id="calMonth">Month Year</div>
+        <div class="cal-grid" id="calGrid"></div>
+      </div>
+    </div>
+
+    <div class="shortcuts">
+      <a href="https://github.com" class="shortcut-card github">
+        <i class="fa-brands fa-github"></i>
+        <span>GitHub</span>
+      </a>
+      <a href="https://youtube.com" class="shortcut-card youtube">
+        <i class="fa-brands fa-youtube"></i>
+        <span>YouTube</span>
+      </a>
+      <a href="https://mail.google.com" class="shortcut-card gmail">
+        <i class="fa-solid fa-envelope"></i>
+        <span>Gmail</span>
+      </a>
+      <a href="https://reddit.com" class="shortcut-card reddit">
+        <i class="fa-brands fa-reddit"></i>
+        <span>Reddit</span>
+      </a>
+      <a href="https://gemini.google.com" class="shortcut-card gemini">
+        <i class="fa-solid fa-wand-magic-sparkles"></i>
+        <span>Gemini</span>
+      </a>
+      <a href="https://claude.ai" class="shortcut-card claude">
+        <i class="fa-solid fa-brain"></i>
+        <span>Claude</span>
+      </a>
+    </div>
+
+    <script>
+      function updateWidget() {
+        const now = new Date();
+
+        let hours = now.getHours();
+        let minutes = now.getMinutes();
+        const ampm = hours >= 12 ? "PM" : "AM";
+
+        hours = hours % 12;
+        hours = hours ? hours : 12;
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+
+        document.getElementById("time").textContent = `${hours}:${minutes}`;
+        document.getElementById("ampm").textContent = ampm;
+
+        const realHours = now.getHours();
+        let greetingText = "GOOD AFTERNOON";
+        if (realHours >= 5 && realHours < 12) {
+          greetingText = "GOOD MORNING";
+        } else if (realHours >= 12 && realHours < 18) {
+          greetingText = "GOOD AFTERNOON";
+        } else {
+          greetingText = "GOOD EVENING";
+        }
+        document.getElementById("greeting").textContent = greetingText;
+
+        const options = { weekday: "long", month: "long", day: "numeric" };
+        const dateText = now.toLocaleDateString("en-US", options);
+        document.getElementById("date").textContent = dateText;
+      }
+
+      setInterval(updateWidget, 1000);
+      updateWidget();
+
+      // ==== KALENDER MINI ====
+      function buildCalendar() {
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = now.getMonth();
+        const firstDay = new Date(year, month, 1).getDay();
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        const monthName = now.toLocaleDateString("en-US", {
+          month: "long",
+          year: "numeric",
+        });
+
+        document.getElementById("calMonth").textContent = monthName;
+
+        const grid = document.getElementById("calGrid");
+        grid.innerHTML = "";
+
+        ["S", "M", "T", "W", "T", "F", "S"].forEach((d) => {
+          const el = document.createElement("div");
+          el.className = "cal-day-label";
+          el.textContent = d;
+          grid.appendChild(el);
+        });
+
+        for (let i = 0; i < firstDay; i++) {
+          const empty = document.createElement("div");
+          empty.className = "cal-cell empty";
+          grid.appendChild(empty);
+        }
+
+        for (let d = 1; d <= daysInMonth; d++) {
+          const cell = document.createElement("div");
+          cell.className = "cal-cell";
+          if (d === now.getDate()) cell.classList.add("today");
+          cell.textContent = d;
+          grid.appendChild(cell);
+        }
+      }
+
+      buildCalendar();
+
+      // ==== SEARCH ENGINE SWITCHER ====
+      const engines = {
+        google: { url: "https://www.google.com/search", param: "q" },
+        brave: { url: "https://search.brave.com/search", param: "q" },
+        duckduckgo: { url: "https://duckduckgo.com/", param: "q" },
+      };
+
+      let activeEngine = "google";
+
+      const searchForm = document.getElementById("searchForm");
+      const searchInput = document.getElementById("searchInput");
+      const searchBox = document.getElementById("searchBox");
+      const searchIcon = document.getElementById("searchIcon");
+      const engineButtons = document.querySelectorAll(".engine-tag");
+
+      engineButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          engineButtons.forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          activeEngine = btn.dataset.engine;
+          searchInput.focus();
+        });
+      });
+
+      function doSearch() {
+        const query = searchInput.value.trim();
+        if (!query) {
+          searchInput.focus();
+          return;
+        }
+        const looksLikeUrl =
+          /^(https?:\/\/)?([\w-]+\.)+[a-z]{2,}(\/.*)?$/i.test(query);
+        if (looksLikeUrl) {
+          const url = query.startsWith("http") ? query : `https://${query}`;
+          window.location.href = url;
+          return;
+        }
+        const engine = engines[activeEngine];
+        const target = `${engine.url}?${engine.param}=${encodeURIComponent(query)}`;
+        window.location.href = target;
+      }
+
+      searchForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        doSearch();
+      });
+
+      searchIcon.addEventListener("click", doSearch);
+
+      searchInput.addEventListener("focus", () =>
+        searchBox.classList.add("focused"),
+      );
+      searchInput.addEventListener("blur", () =>
+        searchBox.classList.remove("focused"),
+      );
+    </script>
   </body>
 </html>
